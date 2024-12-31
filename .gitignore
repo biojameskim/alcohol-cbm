@@ -1,0 +1,12 @@
+/data
+__pycache__
+docs/TODO.md
+results/demos/
+results/ensemble/
+results/simple_ensemble/
+results/FC/
+results/FCgsr/
+results/SC/
+tests/
+brainmontageplot/
+ann4brains/
