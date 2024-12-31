@@ -126,7 +126,7 @@ def visualize_brain_regions(matrix_type, aal_roi_vals, positive, control_only, m
         clim=None
 
     # Create the montage figure
-    create_montage_figure(aal_roi_vals,roilutfile="data/aal116_brainmontage/AAL116_LUT.tsv",lhannotfile="data/aal116_brainmontage/fsaverage.lh.AAL116.label.gii",rhannotfile="data/aal116_brainmontage/fsaverage.rh.AAL116.label.gii",annotsurfacename="fsaverage",subcorticalvolume="data/aal116_brainmontage/AAL116_subcortex.nii.gz",colormap="coolwarm",slice_dict={'axial':[23,33,43,53]},mosaic_dict={'axial':[-1,1]},add_colorbar=True,clim=clim,outputimagefile=f"figures/brain_regions/TEST_{matrix_type}_brain_regions_{sign}_{file_name}{sex}.png")
+    create_montage_figure(aal_roi_vals,roilutfile="data/aal116_brainmontage/AAL116_LUT.tsv",lhannotfile="data/aal116_brainmontage/fsaverage.lh.AAL116.label.gii",rhannotfile="data/aal116_brainmontage/fsaverage.rh.AAL116.label.gii",annotsurfacename="fsaverage",subcorticalvolume="data/aal116_brainmontage/AAL116_subcortex.nii.gz",colormap="coolwarm",slice_dict={'axial':[23,33,43,53]},mosaic_dict={'axial':[-1,1]},add_colorbar=True,clim=clim,outputimagefile=f"figures/brain_regions/{file_name}/{matrix_type}_brain_regions_{sign}_{file_name}{sex}.png")
 
 if __name__ == "__main__":
     CONTROL_ONLY = False
