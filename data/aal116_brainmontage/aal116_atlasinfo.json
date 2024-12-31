@@ -1,0 +1,11 @@
+"aal": {
+    "roicount": 116,
+    "roilut": "AAL116_LUT.tsv",
+    "lhannot": "fsaverage.lh.AAL116.label.gii",
+    "rhannot": "fsaverage.rh.AAL116.label.gii",
+    "subcorticalvolume": "AAL116_subcortex.nii.gz ",
+    "annotsurface": "fsaverage",
+    "lhannot_lookup": "fsaverage.lh.AAL116.label.gii",
+    "rhannot_lookup": "fsaverage.rh.AAL116.label.gii",
+    "annotsurface_lookup": "fsaverage"
+}    

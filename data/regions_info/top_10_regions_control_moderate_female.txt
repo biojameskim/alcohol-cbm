@@ -1,0 +1,71 @@
+SC
+           ROI Yeo_Network  SC_pos_coefs
+      Insula_R SalVentAttn      0.056027
+Temporal_Sup_R      SomMot      0.050373
+Temporal_Inf_L      Limbic      0.049183
+Cingulum_Mid_R SalVentAttn      0.046474
+      Insula_L SalVentAttn      0.045654
+     Putamen_R   Subcortex      0.045110
+Parietal_Sup_L    DorsAttn      0.044011
+    Amygdala_R   Subcortex      0.043383
+Temporal_Inf_R      Limbic      0.043337
+Temporal_Mid_R     Default      0.043036
+                 ROI Yeo_Network  SC_neg_coefs
+     Cingulum_Post_R     Default     -0.036153
+           Angular_R     Default     -0.035525
+           Putamen_L   Subcortex     -0.035187
+           Putamen_R   Subcortex     -0.031607
+   ParaHippocampal_R      Limbic     -0.031428
+           Angular_L     Default     -0.031423
+      Parietal_Inf_L     Control     -0.030703
+            Heschl_R      SomMot     -0.029484
+Paracentral_Lobule_L      SomMot     -0.029423
+       Postcentral_L      SomMot     -0.028877
+
+FC
+               ROI Yeo_Network  FC_pos_coefs
+       Calcarine_L      Visual      0.131228
+          Cuneus_R      Visual      0.111475
+    Parietal_Sup_R    DorsAttn      0.109394
+          Cuneus_L      Visual      0.107851
+       Calcarine_R      Visual      0.105418
+   Occipital_Sup_L      Visual      0.097294
+    Parietal_Sup_L    DorsAttn      0.089287
+         Lingual_L      Visual      0.085230
+   Occipital_Sup_R      Visual      0.084742
+Frontal_Inf_Oper_R SalVentAttn      0.084589
+                 ROI Yeo_Network  FC_neg_coefs
+           Caudate_L   Subcortex     -0.156898
+           Caudate_R   Subcortex     -0.123605
+       Cerebelum_3_L  Cerebellum     -0.115093
+       Frontal_Sup_R     Default     -0.110530
+           Putamen_L   Subcortex     -0.109113
+   Cerebelum_Crus2_L  Cerebellum     -0.107279
+Frontal_Sup_Medial_R     Default     -0.102074
+       Frontal_Sup_L     Default     -0.098690
+           Angular_L     Default     -0.094907
+   Cerebelum_Crus2_R  Cerebellum     -0.090289
+
+FCgsr
+          ROI Yeo_Network  FCgsr_pos_coefs
+Postcentral_R      SomMot         0.097581
+Postcentral_L      SomMot         0.094627
+   Fusiform_L      Visual         0.094268
+ Precentral_R      SomMot         0.088651
+ Precentral_L      SomMot         0.088144
+  Calcarine_L      Visual         0.087418
+     Cuneus_L      Visual         0.087418
+     Cuneus_R      Visual         0.083961
+    Lingual_L      Visual         0.083025
+    Caudate_L   Subcortex         0.082861
+                 ROI Yeo_Network  FCgsr_neg_coefs
+           Caudate_R   Subcortex        -0.088992
+           Caudate_L   Subcortex        -0.088005
+Frontal_Sup_Medial_R     Default        -0.085904
+   Frontal_Mid_Orb_R     Control        -0.085170
+   Frontal_Inf_Orb_L     Default        -0.083293
+       Cerebelum_3_L  Cerebellum        -0.080247
+       Frontal_Sup_R     Default        -0.079628
+   Frontal_Inf_Orb_R     Default        -0.078397
+     Occipital_Inf_R      Visual        -0.073854
+ Temporal_Pole_Mid_R      Limbic        -0.073061

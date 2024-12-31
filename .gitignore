@@ -1,4 +1,3 @@
-/data
 __pycache__
 docs/TODO.md
 results/demos/
@@ -10,3 +9,9 @@ results/SC/
 tests/
 brainmontageplot/
 ann4brains/
+
+data/training_data
+data/tractography_subcortical (SC)
+data/FC
+data/parker
+data/data_with_subject_ids

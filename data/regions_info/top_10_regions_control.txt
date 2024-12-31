@@ -1,0 +1,71 @@
+SC
+            ROI    Yeo_Network  SC_pos_coefs
+       Insula_R RH_SalVentAttn      0.115347
+ Temporal_Sup_R      RH_SomMot      0.109414
+ Temporal_Inf_L      LH_Limbic      0.108611
+    Precuneus_R     RH_Default      0.105184
+ Temporal_Inf_R      RH_Limbic      0.104147
+ Temporal_Sup_L      LH_SomMot      0.094040
+       Insula_L LH_SalVentAttn      0.093219
+     Thalamus_L      Subcortex      0.091091
+Cingulum_Post_L     LH_Default      0.090423
+  Frontal_Sup_L     LH_Default      0.087408
+                 ROI Yeo_Network  SC_neg_coefs
+Paracentral_Lobule_L   LH_SomMot     -0.062148
+            Cuneus_R      RH_Vis     -0.061631
+      Temporal_Sup_R   RH_SomMot     -0.059214
+     Cingulum_Post_R  RH_Default     -0.057422
+           Putamen_R   Subcortex     -0.057166
+   ParaHippocampal_L   LH_Limbic     -0.057152
+            Heschl_R   RH_SomMot     -0.056422
+           Lingual_R      RH_Vis     -0.054173
+       Hippocampus_R   Subcortex     -0.053617
+           Angular_L  LH_Default     -0.050466
+
+FC
+               ROI    Yeo_Network  FC_pos_coefs
+       Calcarine_L         LH_Vis      0.070866
+Frontal_Inf_Oper_R RH_SalVentAttn      0.069758
+   Rolandic_Oper_L      LH_SomMot      0.068253
+          Cuneus_R         RH_Vis      0.067947
+   SupraMarginal_L    LH_DorsAttn      0.063246
+          Insula_R RH_SalVentAttn      0.061436
+          Cuneus_L         LH_Vis      0.059488
+       Calcarine_R         RH_Vis      0.059305
+   Rolandic_Oper_R      RH_SomMot      0.056734
+ Frontal_Inf_Tri_R        RH_Cont      0.052268
+                ROI Yeo_Network  FC_neg_coefs
+          Caudate_L   Subcortex     -0.109566
+      Frontal_Sup_R  RH_Default     -0.104859
+      Cerebelum_3_L  Cerebellum     -0.098525
+Temporal_Pole_Mid_L   LH_Limbic     -0.098277
+          Angular_L  LH_Default     -0.096980
+Temporal_Pole_Mid_R   RH_Limbic     -0.096736
+          Caudate_R   Subcortex     -0.096476
+      Frontal_Sup_L  LH_Default     -0.094643
+  Cerebelum_Crus2_L  Cerebellum     -0.088603
+  Cerebelum_Crus1_R  Cerebellum     -0.086044
+
+FCgsr
+            ROI    Yeo_Network  FCgsr_pos_coefs
+      Putamen_L      Subcortex         0.064726
+      Lingual_R         RH_Vis         0.064003
+    Calcarine_L         LH_Vis         0.062016
+       Insula_R RH_SalVentAttn         0.061188
+Rolandic_Oper_L      LH_SomMot         0.060992
+      Caudate_L      Subcortex         0.059206
+       Vermis_1     Cerebellum         0.059131
+     Fusiform_L         LH_Vis         0.059081
+  Postcentral_R      RH_SomMot         0.058965
+    Calcarine_R         RH_Vis         0.058638
+                ROI Yeo_Network  FCgsr_neg_coefs
+          Caudate_R   Subcortex        -0.058002
+Temporal_Pole_Mid_R   RH_Limbic        -0.057953
+          Angular_L  LH_Default        -0.054636
+Temporal_Pole_Mid_L   LH_Limbic        -0.053825
+     Temporal_Inf_R   RH_Limbic        -0.053486
+  Cerebelum_Crus1_R  Cerebellum        -0.053236
+          Caudate_L   Subcortex        -0.052686
+          Putamen_L   Subcortex        -0.052595
+  Frontal_Mid_Orb_R     RH_Cont        -0.052045
+    Occipital_Inf_R      RH_Vis        -0.051810

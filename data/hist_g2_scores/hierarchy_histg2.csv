@@ -1,0 +1,112 @@
+region_label,region_name,hist_g2_value,hierarchy_score
+1,Precentral_L          ,-0.252527,-0.252527
+2,Precentral_R          ,-0.27582,-0.55164
+3,Frontal_Sup_L         ,0.0262288,0.0786864
+4,Frontal_Sup_R         ,0.0356533,0.1426132
+5,Frontal_Sup_Orb_L     ,0.241026,1.20513
+6,Frontal_Sup_Orb_R     ,0.26085,1.5651000000000002
+7,Frontal_Mid_L         ,-0.0243528,-0.1704696
+8,Frontal_Mid_R         ,-0.0532717,-0.4261736
+9,Frontal_Mid_Orb_L     ,0.131386,1.182474
+10,Frontal_Mid_Orb_R     ,0.124655,1.24655
+11,Frontal_Inf_Oper_L    ,-0.102025,-1.1222750000000001
+12,Frontal_Inf_Oper_R    ,-0.0712346,-0.8548152
+13,Frontal_Inf_Tri_L     ,-0.0105038,-0.13654940000000002
+14,Frontal_Inf_Tri_R     ,0.00813057,0.11382798
+15,Frontal_Inf_Orb_L     ,-0.00752688,-0.1129032
+16,Frontal_Inf_Orb_R     ,0.0526184,0.8418944
+17,Rolandic_Oper_L       ,-0.0699597,-1.1893149
+18,Rolandic_Oper_R       ,-0.0229536,-0.4131648
+19,Supp_Motor_Area_L     ,-0.204303,-3.8817570000000003
+20,Supp_Motor_Area_R     ,-0.25124,-5.024800000000001
+21,Olfactory_L           ,0.272807,5.728947000000001
+22,Olfactory_R           ,0.348359,7.663898
+23,Frontal_Sup_Medial_L  ,0.134695,3.0979850000000004
+24,Frontal_Sup_Medial_R  ,0.101903,2.445672
+25,Frontal_Med_Orb_L     ,0.266983,6.674575000000001
+26,Frontal_Med_Orb_R     ,0.255624,6.646224
+27,Rectus_L              ,0.357943,9.664461000000001
+28,Rectus_R              ,0.386244,10.814832
+29,Insula_L              ,0.055607,1.612603
+30,Insula_R              ,0.0713641,2.140923
+31,Cingulum_Ant_L        ,0.121803,3.775893
+32,Cingulum_Ant_R        ,0.191628,6.132096
+33,Cingulum_Mid_L        ,0.00923368,0.30471144
+34,Cingulum_Mid_R        ,-0.0438553,-1.4910802
+35,Cingulum_Post_L       ,-0.0683547,-2.3924145
+36,Cingulum_Post_R       ,-0.080374,-2.893464
+37,Hippocampus_L         ,0.264563,9.788831
+38,Hippocampus_R         ,0.228782,8.693716
+39,ParaHippocampal_L     ,0.309207,12.059073
+40,ParaHippocampal_R     ,0.394873,15.79492
+41,Amygdala_L            ,0.293274,12.024234
+42,Amygdala_R            ,0.237555,9.97731
+43,Calcarine_L           ,-0.342774,-14.739282000000001
+44,Calcarine_R           ,-0.352656,-15.516864000000002
+45,Cuneus_L              ,-0.342567,-15.415515000000001
+46,Cuneus_R              ,-0.293172,-13.485911999999999
+47,Lingual_L             ,-0.0626755,-2.9457484999999997
+48,Lingual_R             ,-0.157892,-7.578816
+49,Occipital_Sup_L       ,-0.277223,-13.583927
+50,Occipital_Sup_R       ,-0.368264,-18.4132
+51,Occipital_Mid_L       ,-0.123492,-6.2980920000000005
+52,Occipital_Mid_R       ,-0.246503,-12.818156
+53,Occipital_Inf_L       ,-0.113959,-6.039827
+54,Occipital_Inf_R       ,-0.290925,-15.70995
+55,Fusiform_L            ,0.194497,10.697335
+56,Fusiform_R            ,0.14811,8.29416
+57,Postcentral_L         ,-0.195907,-11.166699
+58,Postcentral_R         ,-0.180722,-10.481876
+59,Parietal_Sup_L        ,-0.0968148,-5.712073200000001
+60,Parietal_Sup_R        ,-0.0924135,-5.54481
+61,Parietal_Inf_L        ,-0.104041,-6.346501
+62,Parietal_Inf_R        ,-0.0471231,-2.9216322
+63,SupraMarginal_L       ,0.0947953,5.9721039
+64,SupraMarginal_R       ,0.0913658,5.8474112
+65,Angular_L             ,-0.0185315,-1.2045474999999999
+66,Angular_R             ,-0.0225046,-1.4853036
+67,Precuneus_L           ,0.00802713,0.53781771
+68,Precuneus_R           ,0.00612811,0.41671148
+69,Paracentral_Lobule_L  ,-0.132279,-9.127251000000001
+70,Paracentral_Lobule_R  ,-0.146459,-10.252130000000001
+71,Caudate_L,-0.5,-35.5
+72,Caudate_R,-0.5,-36.0
+73,Putamen_L,-0.5,-36.5
+74,Putamen_R,-0.5,-37.0
+75,Pallidum_L,-0.5,-37.5
+76,Pallidum_R,-0.5,-38.0
+77,Thalamus_L,-0.5,-38.5
+78,Thalamus_R,-0.5,-39.0
+79,Heschl_L              ,-0.319112,-25.209848
+80,Heschl_R              ,-0.316199,-25.295920000000002
+81,Temporal_Sup_L        ,-0.11375,-9.213750000000001
+82,Temporal_Sup_R        ,-0.0237426,-1.9468931999999999
+83,Temporal_Pole_Sup_L   ,0.362285,30.069655
+84,Temporal_Pole_Sup_R   ,0.378884,31.826256
+85,Temporal_Mid_L        ,-0.00254664,-0.21646440000000003
+86,Temporal_Mid_R        ,0.0448413,3.8563518
+87,Temporal_Pole_Mid_L   ,0.313014,27.232218
+88,Temporal_Pole_Mid_R   ,0.343846,30.258447999999998
+89,Temporal_Inf_L        ,0.146315,13.022035
+90,Temporal_Inf_R        ,0.200466,18.04194
+91,Cerebelum_Crus1_L,-0.5,-45.5
+92,Cerebelum_Crus1_R,-0.5,-46.0
+93,Cerebelum_Crus2_L,-0.5,-46.5
+94,Cerebelum_Crus2_R,-0.5,-47.0
+95,Cerebelum_3_L,-0.5,-47.5
+96,Cerebelum_3_R,-0.5,-48.0
+97,Cerebelum_4_5_L,-0.5,-48.5
+98,Cerebelum_4_5_R,-0.5,-49.0
+99,Cerebelum_6_L,-0.5,-49.5
+100,Cerebelum_6_R,-0.5,-50.0
+101,Cerebelum_7b_L,-0.5,-50.5
+102,Cerebelum_7b_R,-0.5,-51.0
+103,Cerebelum_8_L,-0.5,-51.5
+104,Cerebelum_8_R,-0.5,-52.0
+105,Cerebelum_9_L,-0.5,-52.5
+106,Cerebelum_9_R,-0.5,-53.0
+107,Cerebelum_10_L,-0.5,-53.5
+108,Cerebelum_10_R,-0.5,-54.0
+128,Vermis_1,-0.5,-64.0
+129,Vermis_2,-0.5,-64.5
+130,Vermis_3,-0.5,-65.0

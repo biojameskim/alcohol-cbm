@@ -1,0 +1,44 @@
+Results for logistic regression on matrices:
+NOTES:
+    - This is for all subjects not included in the group detailed in "before18_report"
+    - Namely, this includes subjects who either have a baseline age >18 OR have a baseline age <18 and age of event <18.
+
+N = 236
+    - Baseline age >18 [N=156 (group1 - 90, group0 - 66)]
+    - Baseline age <18, age of event <18 [N=80 (group1 - 46, group0 - 34)]
+Number of Splits: 5
+Number of Repeats: 100
+
+Baseline subjects with cahalan=='control' or cahalan=='moderate'
+
+SC:
+Mean accuracy: 0.5798
+Std accuracy: 0.0204
+Mean balanced accuracy: 0.5273
+Std balanced accuracy: 0.0209
+Mean ROC AUC: 0.5460
+Std ROC AUC: 0.0239
+
+FC:
+Mean accuracy: 0.5808
+Std accuracy: 0.0171
+Mean balanced accuracy: 0.5266
+Std balanced accuracy: 0.0151
+Mean ROC AUC: 0.5303
+Std ROC AUC: 0.0194
+
+FCgsr:
+Mean accuracy: 0.5670
+Std accuracy: 0.0176
+Mean balanced accuracy: 0.5118
+Std balanced accuracy: 0.0160
+Mean ROC AUC: 0.5281
+Std ROC AUC: 0.0218
+
+Demographics:
+Mean accuracy: 0.5808
+Std accuracy: 0.0175
+Mean balanced accuracy: 0.5495
+Std balanced accuracy: 0.0217
+Mean ROC AUC: 0.6549
+Std ROC AUC: 0.0166
