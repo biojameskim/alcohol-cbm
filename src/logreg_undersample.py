@@ -14,6 +14,7 @@ from sklearn.preprocessing import StandardScaler
 import numpy as np
 import time
 from sklearn.pipeline import Pipeline
+from imblearn.under_sampling import RandomUnderSampler
 
 
 def scale_data(X_train, X_test):
@@ -27,7 +28,7 @@ def scale_data(X_train, X_test):
 
   return X_scaled_train, X_scaled_test
 
-def save_results(models, metrics, ensemble_metrics, simple_ensemble_metrics, control_only, male, female, permute):
+def save_results(models, metrics, ensemble_metrics, simple_ensemble_metrics, control_only, male, female, permute, undersample):
   """
   [save_results] saves the resulting metrics from the logistic regression to NumPy files.
   """
@@ -43,46 +44,51 @@ def save_results(models, metrics, ensemble_metrics, simple_ensemble_metrics, con
   else:
     sex = ''
 
+  # Add undersample indicator to file names
+  sampling = ""
+  if undersample:
+    sampling = f"_undersampled"
+
   if permute:
     for model_type in models:
-      np.save(f'results/{model_type}/permuted_logreg_{model_type}_{file_name}{sex}_balanced_accuracies.npy', metrics[model_type]['balanced_accuracies'])
-      np.save(f'results/{model_type}/permuted_logreg_{model_type}_{file_name}{sex}_roc_aucs.npy', metrics[model_type]['roc_aucs'])
-      np.save(f'results/{model_type}/permuted_logreg_{model_type}_{file_name}{sex}_pr_aucs.npy', metrics[model_type]['pr_aucs'])
+      np.save(f'results/{model_type}/permuted_logreg_{model_type}_{file_name}{sex}{sampling}_balanced_accuracies.npy', metrics[model_type]['balanced_accuracies'])
+      np.save(f'results/{model_type}/permuted_logreg_{model_type}_{file_name}{sex}{sampling}_roc_aucs.npy', metrics[model_type]['roc_aucs'])
+      np.save(f'results/{model_type}/permuted_logreg_{model_type}_{file_name}{sex}{sampling}_pr_aucs.npy', metrics[model_type]['pr_aucs'])
     
-    np.save(f'results/ensemble/permuted_logreg_ensemble_{file_name}{sex}_balanced_accuracies.npy', ensemble_metrics['balanced_accuracies'])
-    np.save(f'results/ensemble/permuted_logreg_ensemble_{file_name}{sex}_roc_aucs.npy', ensemble_metrics['roc_aucs'])
-    np.save(f'results/ensemble/permuted_logreg_ensemble_{file_name}{sex}_pr_aucs.npy', ensemble_metrics['pr_aucs'])
+    np.save(f'results/ensemble/permuted_logreg_ensemble_{file_name}{sex}{sampling}_balanced_accuracies.npy', ensemble_metrics['balanced_accuracies'])
+    np.save(f'results/ensemble/permuted_logreg_ensemble_{file_name}{sex}{sampling}_roc_aucs.npy', ensemble_metrics['roc_aucs'])
+    np.save(f'results/ensemble/permuted_logreg_ensemble_{file_name}{sex}{sampling}_pr_aucs.npy', ensemble_metrics['pr_aucs'])
 
-    np.save(f'results/simple_ensemble/permuted_logreg_simple_ensemble_{file_name}{sex}_balanced_accuracies.npy', simple_ensemble_metrics['balanced_accuracies'])
-    np.save(f'results/simple_ensemble/permuted_logreg_simple_ensemble_{file_name}{sex}_roc_aucs.npy', simple_ensemble_metrics['roc_aucs'])
-    np.save(f'results/simple_ensemble/permuted_logreg_simple_ensemble_{file_name}{sex}_pr_aucs.npy', simple_ensemble_metrics['pr_aucs'])
+    np.save(f'results/simple_ensemble/permuted_logreg_simple_ensemble_{file_name}{sex}{sampling}_balanced_accuracies.npy', simple_ensemble_metrics['balanced_accuracies'])
+    np.save(f'results/simple_ensemble/permuted_logreg_simple_ensemble_{file_name}{sex}{sampling}_roc_aucs.npy', simple_ensemble_metrics['roc_aucs'])
+    np.save(f'results/simple_ensemble/permuted_logreg_simple_ensemble_{file_name}{sex}{sampling}_pr_aucs.npy', simple_ensemble_metrics['pr_aucs'])
 
   else:
     for model_type in models:
-        np.save(f'results/{model_type}/logreg_{model_type}_{file_name}{sex}_accuracies.npy', metrics[model_type]['accuracies'])
-        np.save(f'results/{model_type}/logreg_{model_type}_{file_name}{sex}_balanced_accuracies.npy', metrics[model_type]['balanced_accuracies'])
-        np.save(f'results/{model_type}/logreg_{model_type}_{file_name}{sex}_roc_aucs.npy', metrics[model_type]['roc_aucs'])
-        np.save(f'results/{model_type}/logreg_{model_type}_{file_name}{sex}_pr_aucs.npy', metrics[model_type]['pr_aucs'])
-        np.save(f'results/{model_type}/logreg_{model_type}_{file_name}{sex}_true_labels.npy', metrics[model_type]['all_true_labels'])
-        np.save(f'results/{model_type}/logreg_{model_type}_{file_name}{sex}_pred_probs.npy', metrics[model_type]['all_pred_probs'])
-        np.save(f'results/{model_type}/logreg_{model_type}_{file_name}{sex}_coefficients.npy', metrics[model_type]['coefficients'])
+        np.save(f'results/{model_type}/logreg_{model_type}_{file_name}{sex}{sampling}_accuracies.npy', metrics[model_type]['accuracies'])
+        np.save(f'results/{model_type}/logreg_{model_type}_{file_name}{sex}{sampling}_balanced_accuracies.npy', metrics[model_type]['balanced_accuracies'])
+        np.save(f'results/{model_type}/logreg_{model_type}_{file_name}{sex}{sampling}_roc_aucs.npy', metrics[model_type]['roc_aucs'])
+        np.save(f'results/{model_type}/logreg_{model_type}_{file_name}{sex}{sampling}_pr_aucs.npy', metrics[model_type]['pr_aucs'])
+        np.save(f'results/{model_type}/logreg_{model_type}_{file_name}{sex}{sampling}_true_labels.npy', metrics[model_type]['all_true_labels'])
+        np.save(f'results/{model_type}/logreg_{model_type}_{file_name}{sex}{sampling}_pred_probs.npy', metrics[model_type]['all_pred_probs'])
+        np.save(f'results/{model_type}/logreg_{model_type}_{file_name}{sex}{sampling}_coefficients.npy', metrics[model_type]['coefficients'])
     
-    np.save(f'results/ensemble/logreg_ensemble_{file_name}{sex}_accuracies.npy', ensemble_metrics['accuracies'])
-    np.save(f'results/ensemble/logreg_ensemble_{file_name}{sex}_balanced_accuracies.npy', ensemble_metrics['balanced_accuracies'])
-    np.save(f'results/ensemble/logreg_ensemble_{file_name}{sex}_roc_aucs.npy', ensemble_metrics['roc_aucs'])
-    np.save(f'results/ensemble/logreg_ensemble_{file_name}{sex}_pr_aucs.npy', ensemble_metrics['pr_aucs'])
-    np.save(f'results/ensemble/logreg_ensemble_{file_name}{sex}_true_labels.npy', ensemble_metrics['all_true_labels'])
-    np.save(f'results/ensemble/logreg_ensemble_{file_name}{sex}_pred_probs.npy', ensemble_metrics['all_pred_probs'])
-    np.save(f'results/ensemble/logreg_ensemble_{file_name}{sex}_coefficients.npy', ensemble_metrics['coefficients'])
+    np.save(f'results/ensemble/logreg_ensemble_{file_name}{sex}{sampling}_accuracies.npy', ensemble_metrics['accuracies'])
+    np.save(f'results/ensemble/logreg_ensemble_{file_name}{sex}{sampling}_balanced_accuracies.npy', ensemble_metrics['balanced_accuracies'])
+    np.save(f'results/ensemble/logreg_ensemble_{file_name}{sex}{sampling}_roc_aucs.npy', ensemble_metrics['roc_aucs'])
+    np.save(f'results/ensemble/logreg_ensemble_{file_name}{sex}{sampling}_pr_aucs.npy', ensemble_metrics['pr_aucs'])
+    np.save(f'results/ensemble/logreg_ensemble_{file_name}{sex}{sampling}_true_labels.npy', ensemble_metrics['all_true_labels'])
+    np.save(f'results/ensemble/logreg_ensemble_{file_name}{sex}{sampling}_pred_probs.npy', ensemble_metrics['all_pred_probs'])
+    np.save(f'results/ensemble/logreg_ensemble_{file_name}{sex}{sampling}_coefficients.npy', ensemble_metrics['coefficients'])
 
-    np.save(f'results/simple_ensemble/logreg_simple_ensemble_{file_name}{sex}_accuracies.npy', simple_ensemble_metrics['accuracies'])
-    np.save(f'results/simple_ensemble/logreg_simple_ensemble_{file_name}{sex}_balanced_accuracies.npy', simple_ensemble_metrics['balanced_accuracies'])
-    np.save(f'results/simple_ensemble/logreg_simple_ensemble_{file_name}{sex}_roc_aucs.npy', simple_ensemble_metrics['roc_aucs'])
-    np.save(f'results/simple_ensemble/logreg_simple_ensemble_{file_name}{sex}_pr_aucs.npy', simple_ensemble_metrics['pr_aucs'])
-    np.save(f'results/simple_ensemble/logreg_simple_ensemble_{file_name}{sex}_true_labels.npy', simple_ensemble_metrics['all_true_labels'])
-    np.save(f'results/simple_ensemble/logreg_simple_ensemble_{file_name}{sex}_pred_probs.npy', simple_ensemble_metrics['all_pred_probs'])
+    np.save(f'results/simple_ensemble/logreg_simple_ensemble_{file_name}{sex}{sampling}_accuracies.npy', simple_ensemble_metrics['accuracies'])
+    np.save(f'results/simple_ensemble/logreg_simple_ensemble_{file_name}{sex}{sampling}_balanced_accuracies.npy', simple_ensemble_metrics['balanced_accuracies'])
+    np.save(f'results/simple_ensemble/logreg_simple_ensemble_{file_name}{sex}{sampling}_roc_aucs.npy', simple_ensemble_metrics['roc_aucs'])
+    np.save(f'results/simple_ensemble/logreg_simple_ensemble_{file_name}{sex}{sampling}_pr_aucs.npy', simple_ensemble_metrics['pr_aucs'])
+    np.save(f'results/simple_ensemble/logreg_simple_ensemble_{file_name}{sex}{sampling}_true_labels.npy', simple_ensemble_metrics['all_true_labels'])
+    np.save(f'results/simple_ensemble/logreg_simple_ensemble_{file_name}{sex}{sampling}_pred_probs.npy', simple_ensemble_metrics['all_pred_probs'])
 
-def create_metrics_report(metrics, ensemble_metrics, simple_ensemble_metrics, num_splits, num_repeats, control_only, male, female, permute, save_to_file=False):
+def create_metrics_report(metrics, ensemble_metrics, simple_ensemble_metrics, num_splits, num_repeats, control_only, male, female, permute, undersample, save_to_file=False):
   """
   [create_metrics_report] creates a report of the metrics for all models from the logistic regression
   """
@@ -98,13 +104,19 @@ def create_metrics_report(metrics, ensemble_metrics, simple_ensemble_metrics, nu
   else:
     sex_str = "All subjects"
 
+  # Add undersample indicator to file names
+  undersample_str = ""
+  if undersample:
+    undersample_str = f"Using undersampling to achieve class balance"
+
   report_lines = [
     "Results for logistic regression on matrices and ensemble:\n",
     f"Number of Splits: {num_splits}",
     f"Number of Repeats: {num_repeats}\n",
     
     f"{control_str}",
-    f"{sex_str}\n",
+    f"{sex_str}",
+    f"{undersample_str}\n",
 
     "Shape of matrices:\n",
     f"SC: {metrics['SC']['coefficients'].shape}",
@@ -215,16 +227,21 @@ def create_metrics_report(metrics, ensemble_metrics, simple_ensemble_metrics, nu
   else:
     sex = ''
 
+  # Add undersampling indicator to file names
+  sampling = ""
+  if undersample:
+    sampling = f"_undersampled"  
+
   if save_to_file and permute:
-    with open(f'results/reports/permutation_test/permuted_logreg_metrics_report_{file_name}{sex}.txt', 'w') as report_file:
+    with open(f'results/reports/permutation_test/permuted_logreg_metrics_report_{file_name}{sex}{sampling}.txt', 'w') as report_file:
       report_file.write("\n".join(report_lines))
   elif save_to_file and not permute:
-    with open(f'results/reports/logreg_metrics/logreg_metrics_report_{file_name}{sex}.txt', 'w') as report_file:
+    with open(f'results/reports/logreg_metrics/logreg_metrics_report_{file_name}{sex}{sampling}.txt', 'w') as report_file:
       report_file.write("\n".join(report_lines))
   else:
     print("\n".join(report_lines))
 
-def create_model_and_metrics(X_dict, y, site_data, num_splits, num_repeats, random_ints, permute):
+def create_model_and_metrics(X_dict, y, site_data, num_splits, num_repeats, random_ints, permute, undersample=False):
   """
   [create_model_and_metrics] performs logistic regression on the matrices and ensemble model.
   Returns the metrics for each model and the ensemble model.
@@ -289,9 +306,58 @@ def create_model_and_metrics(X_dict, y, site_data, num_splits, num_repeats, rand
 
     for fold_idx, (train_index, test_index) in enumerate(outer_kf.split(np.zeros(n_samples), stratification_key)):
       base_models = [] # Store the base models for the ensemble model in this fold
+
+      # Track original distribution of classes and sites for reporting
+      if fold_idx == 0 and repeat_idx == 0:
+        class0_count = np.sum(y[train_index] == 0)
+        class1_count = np.sum(y[train_index] == 1)
+        site_counts = np.bincount(np.argmax(site_data[train_index], axis=1))
+        print(f"Original training data: Class 0: {class0_count}, Class 1: {class1_count}")
+        print(f"Original site distribution: {site_counts}")
+
+      # If undersampling, do it ONCE for ALL models to ensure consistency
+      if undersample:
+          # Get any feature matrix for initial undersampling
+          X_temp = X_dict[MODELS[0]][train_index]
+          y_train_original = y[train_index]
+          site_train = site_data[train_index]
+          train_site_ids = np.argmax(site_train, axis=1)
+          
+          # Create a feature matrix with sample indices as the first column
+          # This trick allows us to track which samples are selected
+          sample_indices = np.arange(len(y_train_original)).reshape(-1, 1)
+          temp_X = np.hstack((sample_indices, X_temp, train_site_ids.reshape(-1, 1)))
+          
+          # Apply stratified undersampling
+          rus = RandomUnderSampler(sampling_strategy='auto', random_state=random_ints[repeat_idx + fold_idx])
+          temp_X_resampled, y_train_resampled = rus.fit_resample(temp_X, y_train_original)
+          
+          # Extract the indices of the samples that were kept
+          resampled_indices = temp_X_resampled[:, 0].astype(int)
+          
+          # For reporting
+          resampled_sites = train_site_ids[resampled_indices]
+          
+          if fold_idx == 0 and repeat_idx == 0:
+              class0_count_after = np.sum(y_train_resampled == 0)
+              class1_count_after = np.sum(y_train_resampled == 1)
+              site_counts_after = np.bincount(resampled_sites)
+              print(f"Resampled training data: Class 0: {class0_count_after}, Class 1: {class1_count_after}")
+              print(f"Resampled site distribution: {site_counts_after}")
+
       for model_type in MODELS:
-        X_train, X_test = X_dict[model_type][train_index], X_dict[model_type][test_index]
-        y_train, y_test = y[train_index], y[test_index]
+        X_train_original = X_dict[model_type][train_index]
+        X_test = X_dict[model_type][test_index]
+        y_train_original = y[train_index]
+        y_test = y[test_index]
+        
+        # Use the resampled indices if undersampling
+        if undersample:
+            X_train = X_train_original[resampled_indices]
+            y_train = y_train_original[resampled_indices]
+        else:
+            X_train = X_train_original
+            y_train = y_train_original
 
         inner_kf = StratifiedKFold(n_splits=N_SPLITS, shuffle=True, random_state=random_ints[repeat_idx + fold_idx])
         
@@ -300,14 +366,6 @@ def create_model_and_metrics(X_dict, y, site_data, num_splits, num_repeats, rand
             ('scaler', StandardScaler()),
             ('classifier', LogisticRegressionCV(penalty='l2', Cs=C_values, cv=inner_kf, max_iter=100, n_jobs=-1))
         ])
-
-        # inner_kf = StratifiedKFold(n_splits=N_SPLITS, shuffle=True, random_state=random_ints[repeat_idx + fold_idx])
-        # model = LogisticRegressionCV(penalty='l2', Cs=C_values, cv=inner_kf, max_iter=100, n_jobs=-1)
-        # model.fit(X_train, y_train)
-        # base_models.append(model) # Save the base model for use in ensemble model
-
-        # y_pred = model.predict(X_test)
-        # y_prob = model.predict_proba(X_test)[:, 1]
 
         pipeline.fit(X_train, y_train)
         base_models.append(pipeline)
@@ -332,24 +390,16 @@ def create_model_and_metrics(X_dict, y, site_data, num_splits, num_repeats, rand
         outer_loop_metrics[model_type]['coefs'][fold_idx] = pipeline.named_steps['classifier'].coef_[0] # Save the coefficients for this 5-fold split
 
       # Ensemble model START
-      # Prepare training and testing sets
-    #   train_preds = np.column_stack([
-    #     base_models[i].predict_proba(X_dict[model_type][train_index])[:, 1]
-    #     for i, model_type in enumerate(['SC', 'FC', 'FCgsr', 'demos'])
-    #   ])
-    #   test_preds = np.column_stack([
-    #     base_models[i].predict_proba(X_dict[model_type][test_index])[:, 1]
-    #     for i, model_type in enumerate(['SC', 'FC', 'FCgsr', 'demos'])
-    #   ])
-    #   train_preds = np.column_stack([
-    #     base_models[i].predict_proba(X_dict[model_type][train_index])[:, 1]
-    #     for i, model_type in enumerate(['SC', 'FC', 'FCgsr', 'demos'])
-    #   ])
-    #   test_preds = np.column_stack([
-    #     base_models[i].predict_proba(X_dict[model_type][test_index])[:, 1]
-    #     for i, model_type in enumerate(['SC', 'FC', 'FCgsr', 'demos'])
-    #   ])
-      # Modified Ensemble model implementation with out-of-fold predictions
+      # For the ensemble model, use the same resampled indices
+      if undersample:
+          # We already have the resampled indices, use them to create training data for each model
+          ensemble_X_trains = {model_type: X_dict[model_type][train_index][resampled_indices] for model_type in MODELS}
+          ensemble_y_train = y[train_index][resampled_indices]
+      else:
+          # If not undersampling, use original data
+          ensemble_X_trains = {model_type: X_dict[model_type][train_index] for model_type in MODELS}
+          ensemble_y_train = y[train_index]
+  
       # Generate out-of-fold predictions for training the meta-model
       train_preds = np.column_stack([
           cross_val_predict(
@@ -357,21 +407,22 @@ def create_model_and_metrics(X_dict, y, site_data, num_splits, num_repeats, rand
                   ('scaler', StandardScaler()),
                   ('classifier', LogisticRegressionCV(penalty='l2', Cs=C_values, cv=inner_kf, max_iter=100, n_jobs=-1))
               ]),
-              X_dict[model_type][train_index], y_train,
+              ensemble_X_trains[model_type], ensemble_y_train,
               method='predict_proba', cv=inner_kf, n_jobs=-1
           )[:, 1]
           for model_type in MODELS
       ])
+  
+      # Train meta-model on unbiased OOF predictions
+      inner_kf = StratifiedKFold(n_splits=N_SPLITS, shuffle=True, random_state=random_ints[repeat_idx + fold_idx])
+      ensemble_model = LogisticRegressionCV(penalty='l2', Cs=C_values, cv=inner_kf, max_iter=100, n_jobs=-1)
+      ensemble_model.fit(train_preds, ensemble_y_train)
 
       # Use previously trained base models to generate test predictions
       test_preds = np.column_stack([
           base_models[i].predict_proba(X_dict[model_type][test_index])[:, 1]
           for i, model_type in enumerate(MODELS)
       ])
-      # Train meta-model on unbiased OOF predictions
-      inner_kf = StratifiedKFold(n_splits=N_SPLITS, shuffle=True, random_state=random_ints[repeat_idx + fold_idx])
-      ensemble_model = LogisticRegressionCV(penalty='l2', Cs=C_values, cv=inner_kf, max_iter=100, n_jobs=-1)
-      ensemble_model.fit(train_preds, y_train)
 
       # Generate predictions using meta-model
       y_pred = ensemble_model.predict(test_preds)
@@ -448,13 +499,16 @@ if __name__ == "__main__":
   SAVE_RESULTS = True
 #   MODELS = ['SC', 'FC', 'FCgsr', 'demos']
   MODELS = ['SC', 'FC', 'demos']
-  PERMUTE = True # If True, permute the labels (for permutation test)
+  PERMUTE = False # If True, permute the labels (for permutation test)
   print("Permute: ", PERMUTE)
   CONTROL_ONLY = False # Set to False to include moderate group as well
   
   # BOTH of these sex flags cannot be True at the same time
   MALE = False # If True, only include male subjects
-  FEMALE = False # If True, only include female subjects
+  FEMALE = True # If True, only include female subjects
+
+  UNDERSAMPLE = True
+  print("Undersample: ", UNDERSAMPLE)
 
   # Set random seed for reproducibility
   np.random.seed(RANDOM_STATE) 
@@ -484,6 +538,10 @@ if __name__ == "__main__":
   print({model: X_dict[model].shape for model in MODELS}, "y:", y.shape)
   print("\n")
 
+  sampling = ""
+  if UNDERSAMPLE:
+    sampling = f"_undersampled"
+
   print("Running logistic regression on matrices and ensemble (stratified)...")
   if CONTROL_ONLY:
     print("Baseline subjects with cahalan=='control' only")
@@ -499,14 +557,14 @@ if __name__ == "__main__":
   print("\n")
 
   start = time.time()
-  metrics, ensemble_metrics, simple_ensemble_metrics = create_model_and_metrics(X_dict=X_dict, y=y, site_data=site_data, num_splits=N_SPLITS, num_repeats=N_REPEATS, random_ints=random_ints, permute=PERMUTE)
+  metrics, ensemble_metrics, simple_ensemble_metrics = create_model_and_metrics(X_dict=X_dict, y=y, site_data=site_data, num_splits=N_SPLITS, num_repeats=N_REPEATS, random_ints=random_ints, permute=PERMUTE, undersample=UNDERSAMPLE)
   end = time.time()
   print(f"Finished in {end - start} seconds\n")
 
   print("Saving results...")
-  save_results(models=MODELS, metrics=metrics, ensemble_metrics=ensemble_metrics, simple_ensemble_metrics=simple_ensemble_metrics, control_only=CONTROL_ONLY, male=MALE, female=FEMALE, permute=PERMUTE)
+  save_results(models=MODELS, metrics=metrics, ensemble_metrics=ensemble_metrics, simple_ensemble_metrics=simple_ensemble_metrics, control_only=CONTROL_ONLY, male=MALE, female=FEMALE, permute=PERMUTE, undersample=UNDERSAMPLE)
   print("Results saved successfully\n")
 
   print("Creating report...")
-  create_metrics_report(metrics=metrics, ensemble_metrics=ensemble_metrics, simple_ensemble_metrics=simple_ensemble_metrics, num_splits=N_SPLITS, num_repeats=N_REPEATS, control_only=CONTROL_ONLY, male=MALE, female=FEMALE, permute=PERMUTE, save_to_file=SAVE_RESULTS)
-  print(f"Report created successfully at results/reports/logreg_metrics/stratified_logreg_metrics_report_{file_name}{sex}.txt\n")
+  create_metrics_report(metrics=metrics, ensemble_metrics=ensemble_metrics, simple_ensemble_metrics=simple_ensemble_metrics, num_splits=N_SPLITS, num_repeats=N_REPEATS, control_only=CONTROL_ONLY, male=MALE, female=FEMALE, permute=PERMUTE, undersample=UNDERSAMPLE, save_to_file=SAVE_RESULTS)
+  print(f"Report created successfully at results/reports/logreg_metrics/stratified_logreg_metrics_report_{file_name}{sex}{sampling}.txt\n")
